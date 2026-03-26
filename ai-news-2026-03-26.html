@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📡 AI 日报 · 2026年3月26日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #050d1a;
+      --bg-mid: #0a1628;
+      --bg-card: #0d1e35;
+      --bg-card-hover: #112540;
+      --border: rgba(100, 180, 255, 0.12);
+      --border-hover: rgba(100, 180, 255, 0.25);
+      --text-primary: #e8f1ff;
+      --text-secondary: #94afd4;
+      --text-muted: #5c7a9e;
+      --accent-blue: #4a9eff;
+      --accent-cyan: #00d4ff;
+      --accent-purple: #9b6fff;
+      --star: rgba(200, 220, 255, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* === 星空背景 === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10, 40, 90, 0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(30, 20, 80, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 20% at 80% 70%, rgba(0, 80, 120, 0.3) 0%, transparent 50%),
+        linear-gradient(160deg, #050d1a 0%, #080f20 40%, #060c18 70%, #050a15 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(200,220,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 8%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 55% 35%, rgba(200,220,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 15%, rgba(200,220,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 42%, rgba(200,220,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 8% 55%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 68%, rgba(200,220,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 75%, rgba(200,220,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 82%, rgba(200,220,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 90%, rgba(200,220,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 95%, rgba(200,220,255,0.3) 0%, transparent 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    /* === HEADER === */
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding: 50px 30px 40px;
+      background: linear-gradient(180deg, rgba(20,45,90,0.5) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header-signal {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      opacity: 0.7;
+      margin-bottom: 14px;
+      font-family: 'Noto Sans SC', monospace;
+    }
+
+    header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    header .subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .meta-date {
+      background: rgba(74, 158, 255, 0.15);
+      border: 1px solid rgba(74, 158, 255, 0.3);
+      color: var(--accent-blue);
+    }
+
+    .meta-focus {
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      color: var(--accent-cyan);
+    }
+
+    .meta-focus-2 {
+      background: rgba(155, 111, 255, 0.1);
+      border: 1px solid rgba(155, 111, 255, 0.25);
+      color: var(--accent-purple);
+    }
+
+    /* === 今日概览 === */
+    .summary-bar {
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
+      border: 1px solid rgba(74, 158, 255, 0.2);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .summary-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .summary-text {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .summary-text strong {
+      color: var(--text-primary);
+    }
+
+    /* === 新闻卡片 === */
+    .cards-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: default;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(74, 158, 255, 0.08);
+      border-color: var(--border-hover);
+    }
+
+    .card-top-bar {
+      height: 4px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 26px 28px 24px;
+    }
+
+    /* 卡片颜色主题 */
+    .card-1 .card-top-bar { background: linear-gradient(90deg, #4a9eff, #00d4ff); }
+    .card-2 .card-top-bar { background: linear-gradient(90deg, #9b6fff, #e040fb); }
+    .card-3 .card-top-bar { background: linear-gradient(90deg, #ff6b6b, #ff8e53); }
+    .card-4 .card-top-bar { background: linear-gradient(90deg, #f59e0b, #10b981); }
+    .card-5 .card-top-bar { background: linear-gradient(90deg, #06b6d4, #3b82f6); }
+
+    /* 悬停时卡片背景渐变匹配 */
+    .card-1:hover { background: linear-gradient(135deg, #0d1e35 0%, rgba(74,158,255,0.05) 100%); }
+    .card-2:hover { background: linear-gradient(135deg, #0d1e35 0%, rgba(155,111,255,0.05) 100%); }
+    .card-3:hover { background: linear-gradient(135deg, #0d1e35 0%, rgba(255,107,107,0.05) 100%); }
+    .card-4:hover { background: linear-gradient(135deg, #0d1e35 0%, rgba(245,158,11,0.05) 100%); }
+    .card-5:hover { background: linear-gradient(135deg, #0d1e35 0%, rgba(6,182,212,0.05) 100%); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card-index {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .card-1 .card-index { background: rgba(74,158,255,0.18); color: #4a9eff; }
+    .card-2 .card-index { background: rgba(155,111,255,0.18); color: #9b6fff; }
+    .card-3 .card-index { background: rgba(255,107,107,0.18); color: #ff6b6b; }
+    .card-4 .card-index { background: rgba(245,158,11,0.18); color: #f59e0b; }
+    .card-5 .card-index { background: rgba(6,182,212,0.18); color: #06b6d4; }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .card-event {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .card-details {
+      margin: 16px 0;
+    }
+
+    .card-details-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card-details ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .card-details ul li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .card-details ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .highlight-box {
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+
+    .card-1 .highlight-box { background: rgba(74,158,255,0.08); border-left: 2px solid rgba(74,158,255,0.4); color: rgba(180,210,255,0.9); }
+    .card-2 .highlight-box { background: rgba(155,111,255,0.08); border-left: 2px solid rgba(155,111,255,0.4); color: rgba(200,180,255,0.9); }
+    .card-3 .highlight-box { background: rgba(255,107,107,0.08); border-left: 2px solid rgba(255,107,107,0.4); color: rgba(255,180,170,0.9); }
+    .card-4 .highlight-box { background: rgba(245,158,11,0.08); border-left: 2px solid rgba(245,158,11,0.4); color: rgba(255,220,140,0.9); }
+    .card-5 .highlight-box { background: rgba(6,182,212,0.08); border-left: 2px solid rgba(6,182,212,0.4); color: rgba(150,230,245,0.9); }
+
+    .why-care {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+    }
+
+    .why-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .why-text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .why-text strong {
+      color: var(--text-primary);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .source-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .source-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-secondary);
+    }
+
+    /* === 底部 === */
+    footer {
+      margin-top: 50px;
+      padding: 30px 0 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-summary {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    .footer-summary span {
+      color: var(--accent-blue);
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-meta a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    /* === 响应式 === */
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 20px 14px 40px; }
+      header { padding: 36px 16px 28px; }
+      .card-body { padding: 20px 18px; }
+      .summary-bar { padding: 14px 16px; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-signal">// SIGNAL RECEIVED · DAILY DISPATCH</div>
+      <h1>📡 AI 日报</h1>
+      <p class="subtitle">深度追踪 · AI Agent 与具身智能前沿动态</p>
+      <div class="header-meta">
+        <span class="meta-tag meta-date">🗓 2026年3月26日（周四）</span>
+        <span class="meta-tag meta-focus">🤖 AI Agent</span>
+        <span class="meta-tag meta-focus-2">🦾 具身智能</span>
+      </div>
+    </header>
+
+    <!-- 今日摘要 -->
+    <div class="summary-bar">
+      <span class="summary-icon">🔭</span>
+      <div class="summary-text">
+        <strong>今日速览：</strong>Anthropic 的 Claude 打通"手机遥控电脑"的 Agent 闭环，黄仁勋高调宣布"AGI 已至"引发业界论战；与此同时，Anthropic 与五角大楼的法律博弈愈演愈烈，AI 基础设施安全首次亮红灯（LiteLLM 供应链攻击），具身智能赛道则迎来市场规模万亿级预测的重磅报告。
+      </div>
+    </div>
+
+    <!-- 新闻卡片 -->
+    <div class="cards-section">
+
+      <!-- 卡片 1 -->
+      <div class="news-card card-1">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-index">NEWS 01</span>
+            <h2 class="card-title">Anthropic 发布手机→电脑全自主控制 Agent，Claude 正式成为「数字员工」</h2>
+          </div>
+          <p class="card-event">
+            Anthropic 宣布用户可通过手机直接赋予 Claude 对个人电脑的<strong>完全控制权</strong>。Claude 不再局限于生成文字或代码，而是能像真实员工一样操控鼠标、键盘，跨应用程序自动化完成复杂工作流——从填写电子表格到操作浏览器完成多步骤任务，全程无需用户介入。
+          </p>
+          <div class="card-details">
+            <p class="card-details-title">关键细节</p>
+            <ul>
+              <li>用户只需在手机端发出自然语言指令，Claude 在 PC 端自主执行</li>
+              <li>支持跨平台多应用协同——浏览器、电子表格、本地文件一体操控</li>
+              <li>被业界称为距离「无需打开笔记本即可完成工作」最近的一步</li>
+              <li>引发"幽灵办公"现象讨论，社交媒体震撼与担忧并存</li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            此次发布是 Anthropic 桌面 Agent（Computer Use）能力的重大升级，继 3月18日阿里"悟空"之后，AI 厂商在<strong>桌面操作系统级 Agent 入口</strong>的争夺全面白热化。
+          </div>
+          <div class="why-care">
+            <span class="why-icon">💡</span>
+            <span class="why-text">
+              <strong>为何关注：</strong>AI Agent 从"回答问题"到"主动执行"的跃迁标志着企业用工逻辑的根本性重构。手机遥控 PC 的 Agent 闭环一旦成熟，将直接颠覆远程协作、RPA（机器人流程自动化）等数千亿美元市场。下一个关键议题是：Agent 的权限边界与安全审计体系如何跟上？
+            </strong>
+          </div>
+          <div class="card-footer">
+            <span class="source-label">来源</span>
+            <span class="source-tag">工业智能算网 3.25</span>
+            <span class="source-tag">Anthropic</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 2 -->
+      <div class="news-card card-2">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-index">NEWS 02</span>
+            <h2 class="card-title">黄仁勋在 Lex Fridman 播客宣告「AGI 已实现」，业界争议四起</h2>
+          </div>
+          <p class="card-event">
+            NVIDIA CEO 黄仁勋于 2026 年 3 月 22 日发布的 Lex Fridman 播客（第 494 期）中，当 Fridman 提出"能创办并运营价值超 10 亿美元科技公司的 AI"这一定义时，黄仁勋立即回应：<strong>"我认为我们已经实现了 AGI。"</strong> 此言引爆 AI 圈，两天内登上全球科技媒体头条。
+          </p>
+          <div class="card-details">
+            <p class="card-details-title">关键细节</p>
+            <ul>
+              <li>黄仁勋依据当前 Agent（如 Claude）的能力，认为 AI"并非不可能"独立创造 10 亿美元价值</li>
+              <li>批评者指出其使用的是"非标准定义"，缺乏实际验证案例</li>
+              <li>微软-OpenAI合同中的 AGI 触发条款至今未启动，萨提亚·纳德拉等业界领袖仍称 AGI"仍是未来"</li>
+              <li>黄仁勋 2023 年对 AGI 的定义与此次声明存在明显差异，引发"定义漂移"质疑</li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            值得关注的背景：黄仁勋此次发言与其 GTC 2026 上的"下一个淘金热是机器人"论断形成呼应，被视为 NVIDIA 在<strong>具身智能与 Agentic AI 双赛道</strong>的系统性叙事构建，具有强烈的商业信号意味。
+          </div>
+          <div class="why-care">
+            <span class="why-icon">💡</span>
+            <span class="why-text">
+              <strong>为何关注：</strong>无论定义之争如何，黄仁勋的声明已将"AGI 节点"推入公众讨论的主流。一旦市场普遍接受这一叙事，将对 AI 算力投资、监管政策、就业市场的公众预期产生实质性影响。NVIDIA 作为 $4 万亿市值公司，其 CEO 的每一句话都是市场的"价格信号"。
+            </strong>
+          </div>
+          <div class="card-footer">
+            <span class="source-label">来源</span>
+            <span class="source-tag">Lex Fridman Podcast #494</span>
+            <span class="source-tag">Awesome Agents 3.24</span>
+            <span class="source-tag">TechSpot</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 3 -->
+      <div class="news-card card-3">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-index">NEWS 03</span>
+            <h2 class="card-title">Anthropic 起诉五角大楼：法官痛批国防部"看起来是想搞垮 Anthropic"</h2>
+          </div>
+          <p class="card-event">
+            2026 年 3 月 24 日，Anthropic 就美国国防部将 Claude 列为<strong>"供应链风险"</strong>并全面禁用一事，向加州北区联邦地方法院提起诉讼，请求初步禁令。庭审中，法官 Rita Lin 罕见强硬质疑国防部，称其决定"看起来像是试图搞垮 Anthropic"。
+          </p>
+          <div class="card-details">
+            <p class="card-details-title">关键细节</p>
+            <ul>
+              <li>冲突根源：Anthropic 要求国防部承诺不将 Claude 用于"完全自主武器"或"大规模监控"</li>
+              <li>特朗普于 2026 年 2 月通过 Truth Social 命令所有联邦机构"立即停止"使用 Anthropic 技术</li>
+              <li>"供应链风险"认定将迫使亚马逊、微软、Palantir 等证明未使用 Claude</li>
+              <li>Anthropic 称若无禁令将损失数十亿美元业务；与此同时 Claude 企业端用量因"QuitGPT"运动暴增 15 倍</li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            这是一场<strong>AI 伦理边界 vs. 国家安全主权</strong>的正面交锋。Anthropic 以"限制 AI 用于自主武器"为由拒绝政府无限制访问，开创了 AI 公司向政府划定红线的先例——而代价是被打上"供应链风险"标签。
+          </div>
+          <div class="why-care">
+            <span class="why-icon">💡</span>
+            <span class="why-text">
+              <strong>为何关注：</strong>此案判决将为 AI 公司与政府合作中的伦理条款设置法律先例。若 Anthropic 胜诉，将赋予 AI 厂商拒绝"全权授权"合同的法律依据；若败诉，则意味着拒绝政府无限制使用需承担巨额商业代价。这是 AI 治理领域 2026 年迄今最重要的法律事件。
+            </strong>
+          </div>
+          <div class="card-footer">
+            <span class="source-label">来源</span>
+            <span class="source-tag">CNBC 3.24</span>
+            <span class="source-tag">工业智能算网 3.25</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 4 -->
+      <div class="news-card card-4">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-index">NEWS 04</span>
+            <h2 class="card-title">LiteLLM 遭供应链攻击：AI 基础设施首次大规模 API 密钥窃取事件</h2>
+          </div>
+          <p class="card-event">
+            2026 年 3 月，广泛使用的 AI 模型编排库 LiteLLM 的 PyPI 版本 <strong>1.82.7 和 1.82.8</strong> 被恶意植入木马，在后台静默窃取用户所有 API 密钥（包括 OpenAI、Anthropic、Gemini 等主流平台凭据），受影响开发者遍及全球 AI Agent 开发者群体。
+          </p>
+          <div class="card-details">
+            <p class="card-details-title">关键细节</p>
+            <ul>
+              <li>攻击类型：供应链投毒，攻击者直接污染官方 PyPI 仓库的正式版本</li>
+              <li>恶意行为：植入具传播性的木马，静默窃取多云/多AI平台 API 密钥</li>
+              <li>LiteLLM 是 AI Agent 开发者最常用的 LLM 调用统一接口库，日下载量数十万</li>
+              <li>截至报道时，官方尚未发布明确的安全修复版本声明</li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            ⚠️ <strong>紧急建议：</strong>立即锁定 LiteLLM 版本（降级或锁定在 1.82.6 及以下），并立即轮换（更换）所有可能泄露的 API 密钥，包括 OpenAI、Anthropic、Google、AWS 等平台凭据。
+          </div>
+          <div class="why-care">
+            <span class="why-icon">💡</span>
+            <span class="why-text">
+              <strong>为何关注：</strong>这是 AI Agent 时代第一起针对<strong>核心 AI 基础设施库</strong>的大规模供应链攻击。随着 Agent 应用大量持有高权限 API 凭据，AI 开发生态的安全体系建设已经紧迫到刻不容缓——这次攻击是一个标志性的警钟事件。
+            </strong>
+          </div>
+          <div class="card-footer">
+            <span class="source-label">来源</span>
+            <span class="source-tag">80aj.com 3.25</span>
+            <span class="source-tag">Linux.do 社区</span>
+            <span class="source-tag">clawd.org</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 5 -->
+      <div class="news-card card-5">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-index">NEWS 05</span>
+            <h2 class="card-title">36氪研究院：中国具身智能 2026 年市场规模将突破万亿，跻身全球第一梯队</h2>
+          </div>
+          <p class="card-event">
+            36氪研究院于 3 月 23 日发布《2026 年具身智能产业发展研究报告》，数据显示中国具身智能产业已处于<strong>全球第一梯队</strong>，2026 年市场规模预计突破万亿元；截至 2025 年底，全年融资超 305 起，总额超 380 亿元，参与机构超 600 家。
+          </p>
+          <div class="card-details">
+            <p class="card-details-title">关键细节</p>
+            <ul>
+              <li>市场规模：2018年 2133 亿 → 2025年 9150 亿 → 2026 年预计破万亿</li>
+              <li>2025 年全年融资事件超 305 起，资金总额超 380 亿元，机构超 600 家</li>
+              <li>应用场景：工业制造、物流服务、特种作业、交通出行加速落地</li>
+              <li>竞争焦点从"是否能跑"转向：世界模型、数据闭环、供应链生态综合能力</li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            报告指出，中国具身智能的核心优势在于<strong>制造业数据闭环</strong>（工厂场景真实数据海量）与<strong>全球最完整的机器人硬件供应链</strong>，这两点是欧美难以短期复制的结构性优势。
+          </div>
+          <div class="why-care">
+            <span class="why-icon">💡</span>
+            <span class="why-text">
+              <strong>为何关注：</strong>万亿级市场预测背后是政策（工信部标准体系 + 十五五战略）、资本（宇树 IPO + 30+ 融资）、技术（VLA 架构商业化）三重驱动共振。对于关注具身智能的投资者和从业者而言，当前正处于"标准落地→淘汰赛开启"的关键窗口期，赛道格局或在 2026 年底前基本成型。
+            </strong>
+          </div>
+          <div class="card-footer">
+            <span class="source-label">来源</span>
+            <span class="source-tag">36氪研究院 3.23</span>
+            <span class="source-tag">国务院发展研究中心</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards-section -->
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-summary">
+        「Agent 闭环打通、AGI 叙事升温、法律红线划定、基础设施告警、赛道万亿在望——<br/>
+        <span>2026 年 AI 的每一天，都不只是技术新闻。</span>」
+      </p>
+      <p class="footer-meta">
+        数据来源：工业智能算网 · Awesome Agents · CNBC · 36氪研究院 · 80aj.com · Linux.do<br/>
+        内容整理：AI 日报自动化系统 | 侧重方向：AI Agent · 具身智能<br/>
+        <span style="opacity:0.5">本报告由系统自动生成，仅供参考，不构成投资建议</span>
+      </p>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+</body>
+</html>

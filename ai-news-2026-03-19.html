@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 日报 · 2026年3月19日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ── Header ── */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+        }
+
+        header .subtitle {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 1.05rem;
+            opacity: 0.85;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        header .meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        header .date {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 7px 20px;
+            border-radius: 30px;
+            font-size: 0.92rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            backdrop-filter: blur(6px);
+        }
+
+        header .tag {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+        }
+
+        header .tag.agent { background: rgba(99, 179, 237, 0.25); color: #bee3f8; }
+        header .tag.embodied { background: rgba(154, 230, 180, 0.25); color: #c6f6d5; }
+
+        /* ── Summary bar ── */
+        .summary-bar {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 20px 28px;
+            margin-bottom: 40px;
+            color: rgba(255,255,255,0.9);
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .summary-bar .icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+        .summary-bar p { line-height: 1.7; }
+        .summary-bar strong { color: #90cdf4; }
+
+        /* ── News Card ── */
+        .news-card {
+            background: white;
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .news-card.color-1::before { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .news-card.color-2::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .news-card.color-3::before { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+        .news-card.color-4::before { background: linear-gradient(90deg, #43e97b, #38f9d7); }
+        .news-card.color-5::before { background: linear-gradient(90deg, #fa709a, #fee140); }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 75px rgba(0,0,0,0.3);
+        }
+
+        /* ── Card Header ── */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .color-1 .card-number { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .color-2 .card-number { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .color-3 .card-number { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .color-4 .card-number { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .color-5 .card-number { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+        .card-title-block { flex: 1; }
+
+        .card-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .card-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 3px 11px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-agent       { background: #ebf4ff; color: #3182ce; }
+        .badge-embodied    { background: #f0fff4; color: #276749; }
+        .badge-infra       { background: #faf5ff; color: #6b46c1; }
+        .badge-research    { background: #fffaf0; color: #c05621; }
+        .badge-enterprise  { background: #fff5f5; color: #c53030; }
+        .badge-funding     { background: #f0fdf4; color: #166534; }
+
+        /* ── Sections ── */
+        .section {
+            margin: 20px 0;
+            padding-left: 18px;
+            border-left: 3px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            color: #2d3748;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        .section p strong {
+            color: #1a202c;
+        }
+
+        /* ── Highlight box ── */
+        .highlight-box {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 14px 0;
+            border-left: 4px solid;
+        }
+
+        .color-1 .highlight-box { border-color: #667eea; }
+        .color-2 .highlight-box { border-color: #f5576c; }
+        .color-3 .highlight-box { border-color: #4facfe; }
+        .color-4 .highlight-box { border-color: #43e97b; }
+        .color-5 .highlight-box { border-color: #fa709a; }
+
+        .highlight-box p {
+            color: #4a5568;
+            font-size: 0.96rem;
+            line-height: 1.75;
+        }
+
+        .highlight-box .label {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        /* ── Key points list ── */
+        .key-points {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px dashed #edf2f7;
+            font-size: 0.97rem;
+            color: #2d3748;
+        }
+
+        .key-points li:last-child { border-bottom: none; }
+
+        .key-points li .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .color-1 .dot { background: #667eea; }
+        .color-2 .dot { background: #f5576c; }
+        .color-3 .dot { background: #4facfe; }
+        .color-4 .dot { background: #38f9d7; }
+        .color-5 .dot { background: #fa709a; }
+
+        /* ── Why care block ── */
+        .why-care {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-top: 22px;
+        }
+
+        .why-care-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .why-care p {
+            color: #78350f;
+            font-size: 0.96rem;
+            line-height: 1.8;
+        }
+
+        /* ── Tags row ── */
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .info-tag {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.83rem;
+            padding: 4px 13px;
+            border-radius: 20px;
+            background: #edf2f7;
+            color: #4a5568;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 0.88rem;
+            padding-bottom: 20px;
+        }
+
+        .footer-summary {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 22px 28px;
+            margin-bottom: 24px;
+            color: rgba(255,255,255,0.92);
+            font-size: 0.97rem;
+            line-height: 1.75;
+            backdrop-filter: blur(8px);
+        }
+
+        .footer-summary strong { color: #90cdf4; }
+
+        footer p { opacity: 0.6; }
+
+        /* ── Responsive ── */
+        @media (max-width: 620px) {
+            header h1 { font-size: 1.9rem; }
+
+            .news-card { padding: 26px 22px; }
+
+            .card-title { font-size: 1.2rem; }
+
+            .summary-bar { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <header>
+        <h1>📡 AI 日报</h1>
+        <p class="subtitle">AI Agent · 具身智能 · 基础设施</p>
+        <div class="meta-row">
+            <span class="date">2026年3月19日 · 周四</span>
+            <span class="tag agent"># AI Agent</span>
+            <span class="tag embodied"># 具身智能</span>
+        </div>
+    </header>
+
+    <!-- Summary bar -->
+    <div class="summary-bar">
+        <div class="icon">📌</div>
+        <p>GTC 闭幕、Cowork 发布、Mistral Forge 亮相——同一周内 <strong>软件侧（桌面 Agent）、硬件侧（推理架构）、训练侧（企业自训平台）</strong>同步成型，AI Agent 基础设施完整性正在快速收口。具身智能的资本涌入同步提速，2026「Agent 元年」的叙事正在兑现。</p>
+    </div>
+
+    <!-- ── Card 1 ── -->
+    <article class="news-card color-1">
+        <div class="card-header">
+            <span class="card-number">1</span>
+            <div class="card-title-block">
+                <h2 class="card-title">Anthropic 发布 Cowork：无代码桌面 AI Agent 正式登场</h2>
+                <div class="card-badges">
+                    <span class="badge badge-agent">AI Agent</span>
+                    <span class="badge badge-enterprise">产品发布</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">事件</div>
+            <p>Anthropic 本周推出 <strong>Cowork</strong>，一款可直接在用户本地电脑文件中工作的 Claude 桌面 Agent。无需编程，即可操作文档、表格和本地应用，也可远程监督控制桌面任务。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">关键细节</div>
+            <ul class="key-points">
+                <li><span class="dot"></span>前沿模型的计算机操作能力（导航 UI、点击软件、填写表单）近期在基准测试中已超越人类基线</li>
+                <li><span class="dot"></span>Anthropic 与微软 Copilot、Google Workspace AI 在企业桌面入口展开正面竞争</li>
+                <li><span class="dot"></span>零门槛形态首次将 Agent 能力触达大众非技术用户</li>
+            </ul>
+        </div>
+
+        <div class="why-care">
+            <div class="why-care-title">💡 为何关注</div>
+            <p>这是 AI Agent 从「云端任务执行」向「本地文件操作」延伸的重要节点。任何有界面的软件——包括遗留系统、行业专用工具——都可被 Agent 直接操作，无需 API。Cowork 标志着这类能力以完整产品形态落地。</p>
+        </div>
+
+        <div class="tags-row">
+            <span class="info-tag">来源：DEV Community / AIToolly</span>
+            <span class="info-tag">Anthropic</span>
+        </div>
+    </article>
+
+    <!-- ── Card 2 ── -->
+    <article class="news-card color-2">
+        <div class="card-header">
+            <span class="card-number">2</span>
+            <div class="card-title-block">
+                <h2 class="card-title">灵初智能（PsiBot）完成 20 亿元融资，具身智能商业化加速</h2>
+                <div class="card-badges">
+                    <span class="badge badge-embodied">具身智能</span>
+                    <span class="badge badge-funding">融资动态</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">事件</div>
+            <p>成立仅两年的初创公司 <strong>灵初智能（PsiBot）</strong>完成天使轮 + Pre-A 轮融资，总金额达 <strong>20 亿元人民币（约 2.8 亿美元）</strong>，投资方涵盖国开金融、国中资本、徐汇资本等国家与地方背景资本。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">公司技术路线</div>
+            <div class="highlight-box">
+                <div class="label">核心判断</div>
+                <p>具身智能当前核心瓶颈不是硬件，而是<strong>高质量训练数据的规模化收集</strong>。PsiBot 押注数据驱动路线，重点构建大规模数据收集系统与可扩展训练管道。</p>
+            </div>
+            <ul class="key-points" style="margin-top: 12px;">
+                <li><span class="dot"></span>创始人来自京东机器人业务，拥有 20+ 年硬件与商业化经验</li>
+                <li><span class="dot"></span>「小全栈」模式：自控关键硬件设计，外包生产，平衡控制力与成本</li>
+                <li><span class="dot"></span>当前落地场景：物流仓储（服装仓库条形码扫描、分拣等半结构化任务）</li>
+                <li><span class="dot"></span>与北京大学合作建立具身灵巧操作联合实验室</li>
+            </ul>
+        </div>
+
+        <div class="why-care">
+            <div class="why-care-title">💡 为何关注</div>
+            <p>此次融资规模与速度印证中国具身智能赛道的资本热度与政策驱动力。「小全栈 + 数据飞轮 + 物流场景优先」的商业模式正成为行业共识模板，后续可观察其能否从试点转化为大规模可盈利部署。</p>
+        </div>
+
+        <div class="tags-row">
+            <span class="info-tag">来源：Benzinga / Bamboo Works</span>
+            <span class="info-tag">灵初智能</span>
+            <span class="info-tag">中国具身智能</span>
+        </div>
+    </article>
+
+    <!-- ── Card 3 ── -->
+    <article class="news-card color-3">
+        <div class="card-header">
+            <span class="card-number">3</span>
+            <div class="card-title-block">
+                <h2 class="card-title">Nature 子刊发布 LLM-ROS 开源框架，具身智能通用底座迎新突破</h2>
+                <div class="card-badges">
+                    <span class="badge badge-embodied">具身智能</span>
+                    <span class="badge badge-research">学术研究</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">事件</div>
+            <p>《自然·机器智能》（3月16日）发表论文，提出将 <strong>LLM 与机器人操作系统（ROS）深度集成</strong>的通用框架，支持自然语言指令→机器人动作的全链路转化。完整代码已在 Huawei Noah's Ark Lab GitHub（ROSLLM）开源。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">核心创新点</div>
+            <ul class="key-points">
+                <li><span class="dot"></span><strong>双模执行：</strong>支持内联代码（inline code）与行为树（behaviour trees）两种执行模式，适应不同复杂度任务</li>
+                <li><span class="dot"></span><strong>反思机制：</strong>机器人能从失败中持续学习，逐步提升任务成功率</li>
+                <li><span class="dot"></span><strong>全开源 LLM：</strong>所有实验均基于开源预训练 LLM 完成，不依赖专有模型，可复现性强</li>
+                <li><span class="dot"></span><strong>广泛验证：</strong>覆盖长周期任务、桌面重排、动态优化、远程监督控制等多场景</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <div class="label">开源地址</div>
+            <p>github.com/huawei-noah/HEBO/tree/master/ROSLLM</p>
+        </div>
+
+        <div class="why-care">
+            <div class="why-care-title">💡 为何关注</div>
+            <p>顶级期刊背书 + 完整开源，意味着这套方案将大大降低学术界和工业界的具身智能开发门槛。模块化、「即插即用」式 LLM 替换设计，让研究者可以快速在不同机器人平台上复用。</p>
+        </div>
+
+        <div class="tags-row">
+            <span class="info-tag">来源：Nature Machine Intelligence</span>
+            <span class="info-tag">Huawei Noah's Ark Lab</span>
+            <span class="info-tag">LLM + ROS</span>
+        </div>
+    </article>
+
+    <!-- ── Card 4 ── -->
+    <article class="news-card color-4">
+        <div class="card-header">
+            <span class="card-number">4</span>
+            <div class="card-title-block">
+                <h2 class="card-title">GTC 2026 收官：NVIDIA Agent 推理架构全面落地</h2>
+                <div class="card-badges">
+                    <span class="badge badge-infra">基础设施</span>
+                    <span class="badge badge-agent">AI Agent</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">事件</div>
+            <p>NVIDIA GTC 2026（3月16-19日，圣何塞）本周收官。NVIDIA 针对 AI Agent 时代的推理算力体系重构路线完整呈现：<strong>Groq 3 LPU + Rubin GPU + Dynamo 软件</strong>构成「解耦推理」架构。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">关键数字 & 产品</div>
+            <ul class="key-points">
+                <li><span class="dot"></span>Dynamo 软件实现解耦推理，延迟减半，吞吐提升最高 <strong>35 倍</strong></li>
+                <li><span class="dot"></span><strong>Groq 3 LPU</strong>：SRAM 存储，专攻低延迟解码；<strong>Rubin GPU</strong>：负责高并发上下文处理</li>
+                <li><span class="dot"></span><strong>NemoClaw</strong> 平台：为 Agent 提供安全外壳，集成策略引擎、网络护栏、隐私路由</li>
+                <li><span class="dot"></span><strong>Nemotron 3 Super</strong>：Agent 专用模型，对标行业顶尖安全与性能</li>
+                <li><span class="dot"></span><strong>Vera Rubin 平台 + LPX 机架</strong>（256 LPU）：支持万亿参数模型推理</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <div class="label">背景：为何 Agent 倒逼算力革新</div>
+            <p>Agent 应用（如 Claude Code）单日 token 消耗比 ChatBot 高一个数量级，旧有以训练为中心的 GPU 架构存在精度冗余、能耗高、延迟高问题，专用推理架构成为必须。</p>
+        </div>
+
+        <div class="why-care">
+            <div class="why-care-title">💡 为何关注</div>
+            <p>NVIDIA 以「解耦推理 + 专用 LPU」重定义 Agent 基础设施的硬件范式，国内推理芯片厂商（寒武纪、海光等）面临重要参照系。Agent 算力需求的爆发，将是下一个算力投资的核心逻辑。</p>
+        </div>
+
+        <div class="tags-row">
+            <span class="info-tag">来源：36氪 · 阿尔法公社</span>
+            <span class="info-tag">NVIDIA GTC 2026</span>
+            <span class="info-tag">推理算力</span>
+        </div>
+    </article>
+
+    <!-- ── Card 5 ── -->
+    <article class="news-card color-5">
+        <div class="card-header">
+            <span class="card-number">5</span>
+            <div class="card-title-block">
+                <h2 class="card-title">Mistral Forge 发布：企业自训前沿模型，破解 Agent 数据隐私瓶颈</h2>
+                <div class="card-badges">
+                    <span class="badge badge-enterprise">企业级</span>
+                    <span class="badge badge-agent">AI Agent</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">事件</div>
+            <p>Mistral AI 发布 <strong>Mistral Forge</strong> 平台，允许企业使用自有私有数据从头训练定制化前沿 AI 模型，直接挑战 OpenAI 和 Anthropic 的企业服务。同日，NVIDIA 发布 <strong>Nemotron-3-Nano-4B</strong>，一款专为边缘计算设计的 40 亿参数紧凑模型。</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">关键细节</div>
+            <ul class="key-points">
+                <li><span class="dot"></span>Forge 核心卖点：企业私有数据不上传第三方，完全可控，解决 Agent 落地的数据隐私顾虑</li>
+                <li><span class="dot"></span>直接挑战 OpenAI Fine-tuning API 与 Anthropic Claude Enterprise</li>
+                <li><span class="dot"></span>Nemotron-3-Nano-4B：4B 参数，适配边缘计算，印证端侧 Agent 成为新布局重点</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <div class="label">Agent 落地的关键瓶颈</div>
+            <p>企业不愿将核心流程数据上传给第三方 API，导致高价值 Agent 场景迟迟无法落地。Forge 代表「自训可控」路线的系统化产品化，是破解这一瓶颈的直接尝试。</p>
+        </div>
+
+        <div class="why-care">
+            <div class="why-care-title">💡 为何关注</div>
+            <p>若 Forge 被市场接受，将加速金融、医疗、法律等高敏感数据行业的企业级 Agent 渗透节奏。同时，Nano-4B 的发布与 Cowork 形成呼应——端侧 + 桌面双线并进，AI Agent 的部署范式正在多元化。</p>
+        </div>
+
+        <div class="tags-row">
+            <span class="info-tag">来源：AIToolly</span>
+            <span class="info-tag">Mistral AI</span>
+            <span class="info-tag">NVIDIA Nemotron</span>
+        </div>
+    </article>
+
+    <!-- Footer summary -->
+    <div class="footer-summary">
+        📊 <strong>今日一句话总结：</strong>GTC 闭幕、Cowork 发布、Forge 亮相——AI Agent 基础设施的软硬件版图在本周密集成型，具身智能的资本涌入同步提速，2026「Agent 元年」的叙事正在快速兑现。
+    </div>
+
+    <footer>
+        <p>每日精选 · AI Agent & 具身智能方向跟踪</p>
+        <p style="margin-top: 8px;">数据来源：AIToolly · Benzinga · Nature MI · 36氪 · DEV Community</p>
+    </footer>
+
+</div>
+</body>
+</html>
