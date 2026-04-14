@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📡 AI 日报 · 2026年4月14日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: linear-gradient(135deg, #020818 0%, #040d24 25%, #060f30 50%, #04091e 75%, #010610 100%);
+      min-height: 100vh;
+      color: #c9d8f0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 星空背景 */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 33%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 68%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(2px 2px at 60% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 93% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 45%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 72%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 58%, rgba(200,220,255,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 10% 42%, rgba(200,220,255,0.35) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(30, 80, 180, 0.25);
+      border: 1px solid rgba(80, 140, 255, 0.4);
+      border-radius: 30px;
+      padding: 6px 20px;
+      font-size: 0.78rem;
+      color: #7eb8ff;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #a8d0ff 0%, #7eb8ff 40%, #b8c8ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .header-sub {
+      font-size: 1rem;
+      color: #7a99c8;
+      margin-bottom: 20px;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .meta-date {
+      background: rgba(60, 100, 200, 0.2);
+      border: 1px solid rgba(80, 140, 255, 0.3);
+      color: #90b8f0;
+    }
+
+    .meta-dir {
+      background: rgba(100, 50, 200, 0.2);
+      border: 1px solid rgba(160, 100, 255, 0.3);
+      color: #c0a0ff;
+    }
+
+    /* ── 摘要栏 ── */
+    .summary-bar {
+      background: linear-gradient(135deg, rgba(20, 50, 120, 0.5), rgba(40, 30, 100, 0.4));
+      border: 1px solid rgba(80, 130, 255, 0.3);
+      border-radius: 16px;
+      padding: 20px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .summary-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #b0ccf0;
+    }
+
+    .summary-text strong {
+      color: #d4e8ff;
+      font-weight: 600;
+    }
+
+    /* ── 卡片 ── */
+    .news-card {
+      background: rgba(8, 20, 55, 0.75);
+      border: 1px solid rgba(50, 90, 180, 0.3);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(30, 70, 200, 0.3);
+      border-color: rgba(80, 140, 255, 0.5);
+    }
+
+    .card-stripe {
+      height: 5px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 26px 30px 28px;
+    }
+
+    .card-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.75;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #daeaff;
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+
+    .event-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a8ad4;
+      margin-bottom: 8px;
+    }
+
+    .event-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #a0bce0;
+      margin-bottom: 18px;
+    }
+
+    .detail-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .detail-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #8aaccc;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(50, 80, 160, 0.15);
+    }
+
+    .detail-list li:last-child { border-bottom: none; }
+
+    .detail-list li::before {
+      content: '▸';
+      color: #4a7ac4;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .highlight-box {
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .why-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #f5d060;
+      margin-bottom: 8px;
+    }
+
+    .why-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #c0d8f0;
+    }
+
+    .why-text strong { color: #f0e0a0; }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(50, 80, 160, 0.2);
+    }
+
+    .source-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(30, 60, 140, 0.4);
+      border: 1px solid rgba(60, 100, 200, 0.3);
+      color: #7aA0d4;
+    }
+
+    .card-link {
+      font-size: 0.78rem;
+      color: #5a90d8;
+      text-decoration: none;
+      border: 1px solid rgba(60, 110, 200, 0.35);
+      padding: 4px 14px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .card-link:hover {
+      background: rgba(60, 110, 200, 0.2);
+      color: #90c0ff;
+    }
+
+    /* ── 颜色主题 ── */
+    .stripe-1 { background: linear-gradient(90deg, #4a90e2, #7b5ef8); }
+    .stripe-2 { background: linear-gradient(90deg, #f5a623, #f06060); }
+    .stripe-3 { background: linear-gradient(90deg, #27ae60, #1abc9c); }
+    .stripe-4 { background: linear-gradient(90deg, #e91e8c, #9c27b0); }
+    .stripe-5 { background: linear-gradient(90deg, #00b4d8, #0077b6); }
+
+    .num-1 { color: #7b9ef8; }
+    .num-2 { color: #f5c842; }
+    .num-3 { color: #42d68a; }
+    .num-4 { color: #e84fa8; }
+    .num-5 { color: #42c8e8; }
+
+    .hl-1 { background: rgba(74, 144, 226, 0.12); border-left: 3px solid #4a90e2; }
+    .hl-2 { background: rgba(245, 166, 35, 0.1); border-left: 3px solid #f5a623; }
+    .hl-3 { background: rgba(39, 174, 96, 0.1); border-left: 3px solid #27ae60; }
+    .hl-4 { background: rgba(233, 30, 140, 0.1); border-left: 3px solid #e91e8c; }
+    .hl-5 { background: rgba(0, 180, 216, 0.1); border-left: 3px solid #00b4d8; }
+
+    /* ── Footer ── */
+    .footer-section {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .footer-summary {
+      background: linear-gradient(135deg, rgba(20, 40, 100, 0.5), rgba(30, 20, 80, 0.4));
+      border: 1px solid rgba(80, 120, 220, 0.3);
+      border-radius: 14px;
+      padding: 22px 30px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #98b8e0;
+    }
+
+    .footer-summary strong { color: #c8dcff; }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: #3a5080;
+    }
+
+    .prev-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 22px;
+      border: 1px solid rgba(60, 100, 180, 0.4);
+      border-radius: 30px;
+      font-size: 0.82rem;
+      color: #5a84c0;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .prev-link:hover {
+      background: rgba(60, 100, 180, 0.2);
+      color: #90b4f0;
+    }
+
+    @media (max-width: 640px) {
+      .card-body { padding: 20px 18px 22px; }
+      .card-title { font-size: 1.1rem; }
+      header { padding: 40px 16px 30px; }
+      .summary-bar { padding: 16px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="header-badge">Daily Intelligence · 第十六期</div>
+    <h1>📡 AI 日报</h1>
+    <p class="header-sub">AI Agent · 具身智能 · 大模型前沿</p>
+    <div class="header-meta">
+      <span class="meta-tag meta-date">📅 2026年4月14日 · 周二</span>
+      <span class="meta-tag meta-dir">🤖 AI Agent</span>
+      <span class="meta-tag meta-dir">🦾 具身智能</span>
+    </div>
+  </header>
+
+  <!-- 摘要栏 -->
+  <div class="summary-bar">
+    <div class="summary-icon">⚡</div>
+    <div class="summary-text">
+      <strong>今日速览：</strong>GPT-6（代号 Spud）正式发布，Symphony 全模态架构 + 200万 Token 上下文重写 Agent 能力上限；与此同时，AMD 推出 GAIA 本地 Agent 框架打破云端垄断，CEAI 2026 合肥大会为具身智能划定十五大产业方向，中国人形机器人产量预计今年激增 94%。
+    </div>
+  </div>
+
+  <!-- 卡片 1 -->
+  <div class="news-card">
+    <div class="card-stripe stripe-1"></div>
+    <div class="card-body">
+      <div class="card-num num-1">No.01 · 重磅发布</div>
+      <div class="card-title">OpenAI GPT-6「Spud」正式发布 — 200万Token上下文 + Symphony全模态架构</div>
+      <div class="event-label">事件</div>
+      <div class="event-text">
+        2026年4月14日，OpenAI 在德克萨斯州 Stargate 超级集群训练完成后，全球同步正式发布 GPT-6（内部代号"土豆 Spud"）。
+        这是继 GPT-5 之后的架构级飞跃，参数规模预计达 5~6 万亿，综合性能较 GPT-5.4 提升约 40%。
+      </div>
+      <ul class="detail-list">
+        <li>上下文窗口扩展至 <strong>200 万 Token</strong>（约 150 万字），前代的整整两倍</li>
+        <li><strong>Symphony 架构</strong>：原生统一处理文本、图像、音频、视频四大模态，不再需要切换子模型</li>
+        <li>数学推理准确率 <strong>92.5%</strong>、代码生成通过率 <strong>96.8%</strong></li>
+        <li>定价维持不变：输入 <strong>2.5 美元/百万 Token</strong>，企业门槛未提升</li>
+        <li>ChatGPT + Codex + Atlas 三合一"超级智能体引擎"同步上线</li>
+      </ul>
+      <div class="highlight-box hl-1">
+        🔑 <strong>核心突破：</strong>200万Token上下文意味着GPT-6可一次性读入整个代码库或完整项目文档，Agent 从"多轮对话助手"进化为"项目级自主执行者"。Sora 网页端服务同步关停，资源全力投入 GPT-6 推理。
+      </div>
+      <div class="why-label">💡 为何关注</div>
+      <div class="why-text">GPT-6 是 AI 从"工具"升维为<strong>"自主执行引擎"的关键里程碑</strong>——200万Token意味着Agent终于能读懂完整业务系统。Symphony架构打通多模态壁垒后，具身机器人感知、规划、执行的统一建模将大幅提速。</div>
+      <div class="card-footer">
+        <span class="source-tag">🔗 AI Program Notes / OpenAI 官方</span>
+        <a href="https://ai.programnotes.cn/p/gpt-6-%E5%AE%9A%E6%A1%A34%E6%9C%8814%E6%97%A5200%E4%B8%87token%E4%B8%8A%E4%B8%8B%E6%96%87symphony%E5%85%A8%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84/" class="card-link" target="_blank">查看原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片 2 -->
+  <div class="news-card">
+    <div class="card-stripe stripe-2"></div>
+    <div class="card-body">
+      <div class="card-num num-2">No.02 · 具身智能</div>
+      <div class="card-title">CEAI 2026合肥大会发布《具身智能十五大方向》 — 中国人形机器人产量今年激增94%</div>
+      <div class="event-label">事件</div>
+      <div class="event-text">
+        4月10-12日，2026中国具身智能大会（CEAI 2026）在安徽合肥举办，由中国人工智能学会主办。
+        1500余名院士专家参会，发布《中国人工智能学会具身智能白皮书》及《2026具身智能十五大方向》，
+        是"十五五"开局之年国内规模最大、规格最高的具身智能学术盛会。
+      </div>
+      <ul class="detail-list">
+        <li>十五大方向覆盖：具身感知、具身规划、具身控制、人形机器人整机、核心零部件等全产业链</li>
+        <li>TrendForce 报告：<strong>2026年中国人形机器人产量预计激增94%</strong></li>
+        <li>宇树科技和智元机器人已包揽全球约 <strong>80% 市场份额</strong>，双寡头格局成型</li>
+        <li>安徽省首个具身智能专项基金已由国资发起设立；2027年全产业链规模目标突破千亿元</li>
+        <li>安徽大学同期揭牌机器人学院、低空技术与工程学院、脑机接口研究院</li>
+      </ul>
+      <div class="highlight-box hl-2">
+        🔑 <strong>产业信号：</strong>连续第二年写入政府工作报告的具身智能，已从"概念验证"跨入"实战阶段"。中国以宇树+智元双寡头锁定80%份额，叠加CAAI《十五大方向》产业路线图，量产元年正式开启。
+      </div>
+      <div class="why-label">💡 为何关注</div>
+      <div class="why-text">《十五大方向》是中国具身智能产业最权威的<strong>技术路线指南</strong>，将直接影响未来3年的融资方向、高校学科设置与企业产品规划。94%的产量增速意味着供应链、传感器、算力需求将同步爆发。</div>
+      <div class="card-footer">
+        <span class="source-tag">🔗 中国科学报 / CAAI</span>
+        <a href="https://paper.sciencenet.cn/htmlnews/2026/4/562962.shtm" class="card-link" target="_blank">查看原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片 3 -->
+  <div class="news-card">
+    <div class="card-stripe stripe-3"></div>
+    <div class="card-body">
+      <div class="card-num num-3">No.03 · Agent工具</div>
+      <div class="card-title">AMD 开源 GAIA 框架 — 本地运行AI Agent，彻底告别云端依赖</div>
+      <div class="event-label">事件</div>
+      <div class="event-text">
+        AMD 正式发布开源框架 GAIA（发音：盖亚），支持开发者在本地硬件上构建和运行 AI 智能体，
+        所有处理均在设备端完成，无需云端 API 或外部密钥。框架针对 AMD Ryzen AI NPU 和 GPU 专门优化，
+        支持 Python 与 C++ 双 SDK。
+      </div>
+      <ul class="detail-list">
+        <li>完全本地化：数据不出设备，无云端依赖，<strong>零 API 费用</strong></li>
+        <li>硬件加速：针对 <strong>Ryzen AI NPU + GPU</strong> 专项优化，提升端侧推理效率</li>
+        <li>内置能力：本地 RAG 文档问答、离线语音识别（Whisper ASR）+ 语音合成（Kokoro TTS）、代码生成、图像生成</li>
+        <li>提供 <strong>Agent UI 桌面端界面</strong>，支持拖拽式文档交互，降低部署门槛</li>
+        <li>GitHub 地址：github.com/amd/gaia</li>
+      </ul>
+      <div class="highlight-box hl-3">
+        🔑 <strong>战略意图：</strong>AMD 以开源工具切入 AI PC 生态，通过 GAIA 将 Ryzen AI 芯片与开发者体验深度绑定，直接与英特尔 AI PC + NVIDIA 云端推理竞争，也为具身机器人本地大脑提供低延迟基础设施。
+      </div>
+      <div class="why-label">💡 为何关注</div>
+      <div class="why-text">GAIA 让<strong>"无网络 AI Agent"从实验室走向桌面</strong>——对金融、医疗、政府等隐私敏感场景意义重大。具身机器人需要低延迟本地推理，GAIA 类框架将成为端侧智能体的核心基础设施。</div>
+      <div class="card-footer">
+        <span class="source-tag">🔗 AIToolly / Hacker News</span>
+        <a href="https://aitoolly.com/zh/ai-news/article/2026-04-14-amd-launches-gaia-sdk-an-open-source-framework-for-building-local-ai-agents-without-cloud-dependency" class="card-link" target="_blank">查看原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片 4 -->
+  <div class="news-card">
+    <div class="card-stripe stripe-4"></div>
+    <div class="card-body">
+      <div class="card-num num-4">No.04 · Agent安全</div>
+      <div class="card-title">微软研发企业级AI Agent对标OpenClaw — OWASP发布AI Agent十大安全风险榜</div>
+      <div class="event-label">事件</div>
+      <div class="event-text">
+        微软正开发面向企业客户的新型 AI 智能体工具，核心差异化是"安全可控"——瞄准开源 OpenClaw 被诟病的高安全风险。
+        同期，OWASP 正式发布《智能体 AI 十大安全风险》，CISA 已警告 Langflow 高危漏洞（CVSS 9.8）被主动利用。
+      </div>
+      <ul class="detail-list">
+        <li>微软新 Agent：精细权限管理 + 完善安全防护，明确定位大型企业客户</li>
+        <li>OWASP 首位威胁：<strong>提示注入（Prompt Injection）</strong> + MCP 供应链攻击</li>
+        <li>CISA 警告 Langflow CVE-2026-33017（CVSS <strong>9.8</strong>）被主动利用，漏洞利用窗口仅 <strong>20小时</strong></li>
+        <li>Claude Code 51.2万行源码此前已因 <code>.npmignore</code> 配置失误泄露到 npm 公共仓库</li>
+        <li>AI 自主攻击（MAD Bugs）：Claude 模型仅用 <strong>4小时</strong> 自主攻破 FreeBSD 内核</li>
+      </ul>
+      <div class="highlight-box hl-4">
+        🔑 <strong>转折点：</strong>AI Agent 安全从"理论隐患"变为"主动攻击现实"。微软切入企业 Agent 安全赛道，标志这一领域进入商业化和规范化阶段，类似云计算早期安全竞争格局将在 Agent 领域重演。
+      </div>
+      <div class="why-label">💡 为何关注</div>
+      <div class="why-text">Agent 安全是 2026 年<strong>最被低估的系统性风险</strong>。随着 Agent 获得文件系统、代码执行、网络访问权限，提示注入的危害已等同于 SQL 注入。OWASP 榜单将推动企业建立"AI Agent 零信任架构"成为合规要求。</div>
+      <div class="card-footer">
+        <span class="source-tag">🔗 TechCrunch AI / OWASP / CISA</span>
+        <a href="https://aitoolly.com/zh/ai-news/article/2026-04-14-microsoft-developing-new-enterprise-grade-ai-agent-to-compete-with-openclaw-security-standards" class="card-link" target="_blank">查看原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片 5 -->
+  <div class="news-card">
+    <div class="card-stripe stripe-5"></div>
+    <div class="card-body">
+      <div class="card-num num-5">No.05 · 开源生态</div>
+      <div class="card-title">智谱 GLM-5.1 超越GPT-5.4 + Multica 团队协作Agent平台登顶GitHub热榜</div>
+      <div class="event-label">事件</div>
+      <div class="event-text">
+        国产开源模型再度领跑：智谱 GLM-5.1（744B MoE，MIT 许可证）在 SWE-Bench Pro 评测中超越 GPT-5.4 和 Claude Opus 4.6；
+        阿里 Qwen3.5 同步横扫 OpenRouter 榜单。开源 Agent 平台 Multica 今日登顶 GitHub Trending，
+        将 AI 编码 Agent 转化为团队协作伙伴。
+      </div>
+      <ul class="detail-list">
+        <li>GLM-5.1 SWE-Bench Pro 得分超越 GPT-5.4 和 Claude Opus 4.6，MIT 许可证完全开源可商用</li>
+        <li>Qwen3.5 横扫 OpenRouter 多项榜单，中美开源模型竞争进入最激烈阶段</li>
+        <li><strong>Multica</strong>：团队协作型 Agent，支持任务分配、进度跟踪、多 Agent 技能成长</li>
+        <li>Claude Code 80.8% SWE-bench 得分领跑 AI 编程工具，Cursor 3 紧随其后</li>
+        <li>开源 Agent 开发框架价值上升，开发者正向本地化、去中心化迁移</li>
+      </ul>
+      <div class="highlight-box hl-5">
+        🔑 <strong>格局变化：</strong>闭源大模型溢价正在收窄——当开源 GLM-5.1 在权威评测中超越 GPT-5.4，企业采购决策将向"开源+私有化部署"加速倾斜。Multica 的出现标志 Agent 从单人工具演化为<strong>协作型数字同事</strong>。
+      </div>
+      <div class="why-label">💡 为何关注</div>
+      <div class="why-text">国产开源模型以<strong>"高性能 + 低成本 + 完全可控"</strong>三重优势正在重塑市场格局。GLM-5.1 的商业许可意味着企业无需依赖 API，可本地私有化部署，结合 AMD GAIA 等端侧框架，<strong>离线 Agent 生态正在快速成型</strong>。</div>
+      <div class="card-footer">
+        <span class="source-tag">🔗 AIToolly / GitHub Trending / OpenRouter</span>
+        <a href="https://aitoolly.com/zh/ai-news/2026-04-14" class="card-link" target="_blank">查看原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-section">
+    <div class="footer-summary">
+      <strong>今日洞察：</strong>GPT-6 的发布是 AI 进入"超长上下文 Agent 时代"的标志性事件；CEAI 2026 为中国具身智能划定产业路线，94% 产量增速宣告量产元年；AMD GAIA 与开源 GLM-5.1 共同推动 AI 算力从云端向端侧迁移——<strong>本地化、开源化、Agent化</strong>正成为 2026 年 AI 基础设施的核心叙事。
+    </div>
+    <div class="footer-meta">
+      数据来源：AI Program Notes · 中国科学报 · AIToolly · TechCrunch AI · OWASP · CISA · GitHub Trending<br/>
+      本报告仅供信息参考，内容基于公开报道整理，不构成投资建议
+    </div>
+    <a class="prev-link" href="./ai-news-2026-04-08.html">← 2026-04-08</a>
+  </div>
+
+</div>
+</body>
+</html>
